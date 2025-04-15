@@ -1,6 +1,7 @@
 
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -14,7 +15,7 @@ const Hero = () => {
       
       <div className="container-custom relative z-10 pt-10 md:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="flex flex-col space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <div className="flex flex-col space-y-6">
             <span className="text-ecyber-accent font-mono">Welcome to</span>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               <span className="text-ecyber-light block">Transforming Ideas into</span>
@@ -24,17 +25,21 @@ const Hero = () => {
               Expert web development, mobile apps, data analytics, and digital transformation services to accelerate your business growth.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button className="btn-primary flex items-center gap-2 group">
-                Get Started
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button variant="outline" className="btn-outline">
-                Our Work
-              </Button>
+              <Link to="/contact">
+                <Button className="btn-primary flex items-center gap-2 group">
+                  Get Started
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link to="/projects">
+                <Button variant="outline" className="btn-outline">
+                  Our Work
+                </Button>
+              </Link>
             </div>
           </div>
           
-          <div className="relative animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <div className="relative">
             <div className="relative bg-gradient-to-br from-blue-600/20 to-ecyber-accent/20 p-1 rounded-2xl">
               <div className="bg-ecyber-darker p-4 rounded-xl overflow-hidden">
                 <img 
@@ -47,15 +52,6 @@ const Hero = () => {
             </div>
             <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-600/30 rounded-full filter blur-2xl"></div>
           </div>
-        </div>
-        
-        <div className="mt-20 md:mt-28 flex justify-center">
-          <a href="#services" className="flex flex-col items-center text-ecyber-light/70 hover:text-ecyber-accent transition-colors">
-            <span className="mb-2">Scroll to discover</span>
-            <div className="w-6 h-10 border-2 border-ecyber-light/30 rounded-full flex justify-center items-start p-1">
-              <div className="w-1.5 h-1.5 bg-ecyber-accent rounded-full animate-bounce"></div>
-            </div>
-          </a>
         </div>
       </div>
     </section>

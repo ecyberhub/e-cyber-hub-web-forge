@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,36 +22,38 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Team', href: '#team' },
-    { name: 'Reviews', href: '#reviews' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Team', href: '/team' },
+    { name: 'Reviews', href: '/testimonials' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-ecyber-darker/90 backdrop-blur-md py-2 shadow-md' : 'bg-transparent py-4'}`}>
       <div className="container-custom flex justify-between items-center">
-        <a href="#home" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <span className="text-2xl font-bold text-ecyber-light">
             E<span className="text-ecyber-accent">-</span>Cyber Hub
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <a 
+            <Link 
               key={link.name} 
-              href={link.href} 
+              to={link.href} 
               className="text-ecyber-light/80 hover:text-ecyber-accent transition-colors gradient-border"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
-          <Button className="btn-primary">Get Started</Button>
+          <Link to="/contact">
+            <Button className="btn-primary">Get Started</Button>
+          </Link>
         </div>
 
         {/* Mobile Navigation Button */}
@@ -64,16 +67,18 @@ const Navbar = () => {
         <div className="md:hidden bg-ecyber-darker/95 backdrop-blur-md absolute w-full py-4 shadow-lg animate-fade-in">
           <div className="container-custom flex flex-col space-y-4">
             {navLinks.map((link) => (
-              <a 
+              <Link 
                 key={link.name} 
-                href={link.href} 
+                to={link.href} 
                 className="text-ecyber-light/80 hover:text-ecyber-accent transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <Button className="btn-primary w-full">Get Started</Button>
+            <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+              <Button className="btn-primary w-full">Get Started</Button>
+            </Link>
           </div>
         </div>
       )}

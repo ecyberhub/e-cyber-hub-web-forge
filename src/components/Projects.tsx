@@ -100,15 +100,15 @@ const Projects = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div key={project.title} className="opacity-0 animate-fade-in" style={{ animationDelay: `${0.2 * index}s` }}>
+          {projects.map((project) => (
+            <div key={project.title}>
               <ProjectCard project={project} />
             </div>
           ))}
         </div>
         
         <div className="mt-16 text-center">
-          <a href="#" className="btn-primary inline-flex">View All Projects</a>
+          <a href="/projects" className="btn-primary inline-flex">View All Projects</a>
         </div>
       </div>
     </section>
