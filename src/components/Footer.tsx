@@ -1,5 +1,4 @@
-
-import { ArrowRight, Facebook, Twitter, Instagram, Linkedin, TikTok } from 'lucide-react';
+import { ArrowRight, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -54,9 +53,6 @@ const Footer = () => {
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-ecyber-dark flex items-center justify-center text-ecyber-light hover:text-ecyber-accent transition-colors" aria-label="LinkedIn">
                 <Linkedin size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-ecyber-dark flex items-center justify-center text-ecyber-light hover:text-ecyber-accent transition-colors" aria-label="TikTok">
-                <TikTok size={18} />
               </a>
             </div>
           </div>
