@@ -1,20 +1,18 @@
 
 import { 
-  User, 
-  UserCog, 
-  Users, 
-  MessageSquare,
   Facebook,
   Twitter,
   Linkedin,
   Instagram
 } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface TeamMember {
   name: string;
   role: string;
-  icon: React.ElementType;
   description: string;
+  initials: string;
   socialLinks: {
     facebook?: string;
     twitter?: string;
@@ -24,14 +22,14 @@ interface TeamMember {
 }
 
 const TeamMemberCard = ({ member }: { member: TeamMember }) => {
-  const Icon = member.icon;
-  
   return (
-    <div className="bg-ecyber-darker rounded-xl overflow-hidden group border border-slate-800 hover:border-ecyber-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-ecyber-accent/5">
-      <div className="p-8 flex flex-col items-center text-center">
-        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500/20 to-ecyber-accent/20 flex items-center justify-center mb-6">
-          <Icon className="w-12 h-12 text-ecyber-accent" />
-        </div>
+    <Card className="bg-ecyber-darker rounded-xl overflow-hidden group border border-slate-800 hover:border-ecyber-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-ecyber-accent/5">
+      <CardContent className="p-8 flex flex-col items-center text-center">
+        <Avatar className="w-24 h-24 mb-6 ring-2 ring-ecyber-accent/20 bg-gradient-to-br from-blue-500/20 to-ecyber-accent/20">
+          <AvatarFallback className="text-ecyber-accent text-2xl font-bold bg-gradient-to-br from-blue-500/20 to-ecyber-accent/20">
+            {member.initials}
+          </AvatarFallback>
+        </Avatar>
         
         <h3 className="text-xl font-semibold text-ecyber-light mb-1">{member.name}</h3>
         <p className="text-ecyber-accent mb-4">{member.role}</p>
@@ -60,8 +58,8 @@ const TeamMemberCard = ({ member }: { member: TeamMember }) => {
             </a>
           )}
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -70,8 +68,8 @@ const TeamSection = () => {
     {
       name: "Peter Mitunda",
       role: "CEO & Co-CEO, IT Expert",
-      icon: UserCog,
-      description: "Visionary leader with expertise in web development and IT infrastructure. Drives E-Cyber Hub's innovation strategy.",
+      initials: "PM",
+      description: "Tech enthusiast and visionary leader with extensive expertise in web development and IT infrastructure. Drives E-Cyber Hub's innovation strategy and client solutions.",
       socialLinks: {
         linkedin: "#",
         twitter: "#",
@@ -81,8 +79,8 @@ const TeamSection = () => {
     {
       name: "Alex Irungu",
       role: "Co-CEO, IT Expert",
-      icon: UserCog,
-      description: "Technical expert specialized in mobile app development and cloud solutions with a passion for digital transformation.",
+      initials: "AI",
+      description: "Technical specialist with deep knowledge in mobile app development and cloud solutions. Passionate about helping businesses achieve digital transformation.",
       socialLinks: {
         linkedin: "#",
         twitter: "#",
@@ -92,8 +90,8 @@ const TeamSection = () => {
     {
       name: "Ronny Mumani",
       role: "Outreach Specialist",
-      icon: Users,
-      description: "Strategic communicator who builds and maintains client relations while developing new business opportunities.",
+      initials: "RM",
+      description: "Strategic communicator focused on building strong client relationships. Identifies new business opportunities and manages partnerships with key stakeholders.",
       socialLinks: {
         linkedin: "#",
         facebook: "#",
@@ -103,8 +101,8 @@ const TeamSection = () => {
     {
       name: "Faith Wairimu",
       role: "Social Media Manager",
-      icon: MessageSquare,
-      description: "Creative digital marketer who enhances E-Cyber Hub's online presence and drives engagement across social platforms.",
+      initials: "FW",
+      description: "Creative digital marketer with a flair for engaging content creation. Manages E-Cyber Hub's online presence and drives engagement across all social platforms.",
       socialLinks: {
         linkedin: "#",
         twitter: "#",

@@ -63,7 +63,7 @@ const Projects = () => {
       description: "A complete e-commerce solution for a hardware company, featuring product catalog, online ordering, and inventory management.",
       image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
       technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
-      url: "https://mjengo.co.ke"
+      url: "https://mjengo-yellow-hub.lovable.app/"
     },
     {
       title: "Financial Analytics Dashboard",

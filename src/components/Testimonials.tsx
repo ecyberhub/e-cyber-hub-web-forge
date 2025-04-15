@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Testimonial {
   name: string;
@@ -8,6 +9,7 @@ interface Testimonial {
   comment: string;
   rating: number;
   language: 'english' | 'kiswahili';
+  service: string;
 }
 
 const StarRating = ({ rating }: { rating: number }) => {
@@ -28,13 +30,15 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
   return (
-    <div className="bg-ecyber-darker p-6 rounded-xl border border-slate-800 relative">
+    <div className="bg-ecyber-darker p-6 rounded-xl border border-slate-800 relative h-full flex flex-col">
       <Quote className="absolute top-4 right-4 text-ecyber-accent/20" size={40} />
       <div className="mb-4">
         <StarRating rating={testimonial.rating} />
       </div>
-      <p className="text-ecyber-light mb-6 relative z-10">"{testimonial.comment}"</p>
-      <div className="flex items-center">
+      <ScrollArea className="flex-grow mb-6">
+        <p className="text-ecyber-light relative z-10">"{testimonial.comment}"</p>
+      </ScrollArea>
+      <div className="flex items-center mt-auto">
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-ecyber-accent flex items-center justify-center text-ecyber-darker font-bold text-lg">
           {testimonial.name.charAt(0)}
         </div>
@@ -42,10 +46,11 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
           <h4 className="text-ecyber-light font-medium">{testimonial.name}</h4>
           <p className="text-ecyber-secondary text-sm">{testimonial.role}</p>
         </div>
-        <div className="ml-auto">
+        <div className="ml-auto flex flex-col items-end">
           <span className="text-xs px-2 py-1 rounded bg-ecyber-accent/10 text-ecyber-accent">
             {testimonial.language === 'english' ? 'English' : 'Kiswahili'}
           </span>
+          <span className="text-xs text-ecyber-secondary mt-1">{testimonial.service}</span>
         </div>
       </div>
     </div>
@@ -60,45 +65,51 @@ const Testimonials = () => {
   const testimonials: Testimonial[] = [
     {
       name: "John Kamau",
-      role: "Business Owner",
-      comment: "E-Cyber Hub transformed our online presence with a website that perfectly fits our brand. We saw a 30% increase in customer engagement after launch!",
+      role: "Business Owner, Nairobi",
+      comment: "E-Cyber Hub transformed our online presence with a website that perfectly fits our brand. We saw a 30% increase in customer engagement after launch. Their web development team was professional and responsive throughout the project.",
       rating: 5,
-      language: "english"
+      language: "english",
+      service: "Web Development"
     },
     {
-      name: "Maria Njeri",
-      role: "Marketing Director",
-      comment: "E-Cyber Hub walitupeleka mbele kwa huduma zao za digital transformation. Tumefurahi sana na maendeleo yetu.",
+      name: "Wanjiku Mwangi",
+      role: "Marketing Director, Kiambu",
+      comment: "E-Cyber Hub walitupeleka mbele kwa huduma zao za digital transformation. Walifanya kampuni yetu kuwa ya kisasa zaidi na kupata wateja wengi kwenye mitandao ya kijamii. Tumefurahi sana na maendeleo yetu.",
       rating: 5,
-      language: "kiswahili"
+      language: "kiswahili",
+      service: "Digital Transformation"
     },
     {
       name: "David Omondi",
-      role: "Startup Founder",
-      comment: "Working with the E-Cyber Hub team was fantastic. They delivered our mobile app on time and within budget, with all the features we needed.",
+      role: "Startup Founder, Kisumu",
+      comment: "Working with the E-Cyber Hub team on our mobile app was fantastic. They delivered on time and within budget, with all the features we needed. The app has been downloaded over 5,000 times in just three months since launch.",
       rating: 4,
-      language: "english"
+      language: "english",
+      service: "Mobile App Development"
     },
     {
       name: "Fatuma Hassan",
-      role: "E-commerce Manager",
-      comment: "Huduma za data analytics zilituwezesha kuelewa wateja wetu vizuri zaidi. Mapato yetu yameongezeka kwa asilimia 25 tangu tuanze kutumia suluhisho lao.",
+      role: "E-commerce Manager, Mombasa",
+      comment: "Huduma za data analytics zilituwezesha kuelewa wateja wetu vizuri zaidi. Tuliweza kuona mienendo ya ununuzi na kuboresha mikakati yetu ya mauzo. Mapato yetu yameongezeka kwa asilimia 25 tangu tuanze kutumia suluhisho lao.",
       rating: 5,
-      language: "kiswahili"
+      language: "kiswahili",
+      service: "Data Analytics"
     },
     {
       name: "Michael Wanjau",
-      role: "IT Professional",
-      comment: "The career coaching services provided by E-Cyber Hub helped me land my dream job in tech. Their guidance was invaluable.",
+      role: "IT Professional, Nakuru",
+      comment: "The career coaching services provided by E-Cyber Hub helped me land my dream job in tech. Their guidance on portfolio development and interview preparation was invaluable. I'm now earning 40% more than in my previous position.",
       rating: 5,
-      language: "english"
+      language: "english",
+      service: "Career Coaching"
     },
     {
       name: "Amina Yusuf",
-      role: "Restaurant Owner",
-      comment: "Tovuti yetu mpya iliyoundwa na E-Cyber Hub imefanya biashara yetu kuonekana zaidi. Watalii wengi sasa wanatupata kupitia mtandao.",
+      role: "Restaurant Owner, Lamu",
+      comment: "Tovuti yetu mpya iliyoundwa na E-Cyber Hub imefanya biashara yetu kuonekana zaidi. Watalii wengi sasa wanatupata kupitia mtandao na tunapokea maombi mengi ya kuhifadhi meza. Tunashukuru kwa kazi nzuri.",
       rating: 4,
-      language: "kiswahili"
+      language: "kiswahili",
+      service: "Web Development"
     }
   ];
 
@@ -171,7 +182,7 @@ const Testimonials = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedTestimonials.map((testimonial, index) => (
-            <div key={`${testimonial.name}-${index}`} className="opacity-0 animate-fade-in" style={{ animationDelay: `${0.2 * index}s` }}>
+            <div key={`${testimonial.name}-${index}`} className="opacity-0 animate-fade-in h-full" style={{ animationDelay: `${0.2 * index}s` }}>
               <TestimonialCard testimonial={testimonial} />
             </div>
           ))}
